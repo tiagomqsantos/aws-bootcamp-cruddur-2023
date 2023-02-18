@@ -1,5 +1,18 @@
 # Week 0 — Billing and Architecture
 
+Summary:
+I started off this week by (re)watching and following all the playlist course videos, which provided me with a solid foundation for my learning. I used the root account user to create an IAM group and an IAM user, with admin privileges. Setting up MFA in both users was an important security measure that I implemented, and I've also created access keys to use that user in gitpod.
+
+Creating a Billing Alarm using SNS topic and Cloudwatch is an essential step in keeping track of my costs. It's great to see that I also created an AWS Budget, both in the AWS console and in the terminal.
+
+Reviewing all the questions of each pillar in the Well Architected Tool shows that I am in the right path to obtain a good understanding of the principles of AWS architecture. 
+
+Drawing the required diagrams in Lucid Charts was a challenging task, but is a great way for me to visualize my system architecture.
+
+Researching the technical and service limits of specific services is an important step in ensuring that my system is technically flexible, and opening a support ticket to request a service limit shows that I am willing to take proactive measures to ensure my system is scalable.
+
+Overall, I have accomplished a great deal during this first week of the bootcamp. I will continue to keep up the good work!
+
 
 ## Getting the AWS CLI Working
 
