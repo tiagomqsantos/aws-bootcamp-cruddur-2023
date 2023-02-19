@@ -1,4 +1,4 @@
-# Week 0 — Billing and Architecture
+# Week 0 — Billing and Architecture (journal under construction)
 
 ## Summary submitted in Student Portal
 
@@ -19,11 +19,69 @@ Overall, I have accomplished a great deal during this first week of the bootcamp
 
 ## Required Homework/Tasks
 
+### Set MFA in AWS Root account user 
+
+### Create a new IAM user (and a group) and set MFA on it
+
 ### Install and Verify AWS CLI in Gitpod
 
 I've been using Gitpod in bootcamp, as previously recommended by Andrew.
 
 I've followed the instructions on the video [Week 0 - Generate Credentials, AWS CLI, Budget and Billing Alarm via CLI]( https://www.youtube.com/watch?v=OdUnNuKylHg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=16).
+
+### Install AWS CLI
+
+- We are going to install the AWS CLI when our Gitpod enviroment lanuches.
+- We are are going to set AWS CLI to use partial autoprompt mode to make it easier to debug CLI commands.
+- The bash commands we are using are the same as the [AWS CLI Install Instructions]https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+
+Update our `.gitpod.yml` to include the following task.
+
+```sh
+tasks:
+  - name: aws-cli
+    env:
+      AWS_CLI_AUTO_PROMPT: on-partial
+    init: |
+      cd /workspace
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
+      cd $THEIA_WORKSPACE_ROOT
+```
+
+### Set Env Vars
+
+We will set these credentials for the current bash terminal
+```
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+export AWS_DEFAULT_REGION=us-east-1
+```
+
+We'll tell Gitpod to remember these credentials if we relaunch our workspaces
+```
+gp env AWS_ACCESS_KEY_ID=""
+gp env AWS_SECRET_ACCESS_KEY=""
+gp env AWS_DEFAULT_REGION=us-east-1
+```
+
+### Check that the AWS CLI is working and you are the expected user
+
+```sh
+aws sts get-caller-identity
+```
+
+You should see something like this:
+```json
+{
+    "UserId": "AIFBZRJIQN2ONP4ET4EK4",
+    "Account": "655602346534",
+    "Arn": "arn:aws:iam::655602346534:user/andrewcloudcamp"
+}
+```
+
 
 In order to prove that I am able to use the AWS CLI and the IAM access key is set in Gitpod, here are the screenshot of command `aws sts get-caller-identity` in Gitpod:
 
@@ -31,44 +89,24 @@ In order to prove that I am able to use the AWS CLI and the IAM access key is se
 
 ----------------
 
-I followed the instructions on the [AWS CLI Install Documentation Page](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-
-![Installing AWS CLI](assets/installing-windows-aws-cli.png)
-
-```
-msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
-```
-
-I attempted to run the command by typing in `aws` but I recieved an error
-
-```
-C:\Users\Andrew>aws
-'aws' is not recognized as an internal or external command,
-operable program or batch file.
-```
-
-I was able to resolve the error by closing command prompt, and opening it again.
-
-![Proof of Working AWS CLI](assets/proof-of-aws-cli.png)
-
 ### Create a Budget
 
 I created my own Budget for $1 because I cannot afford any kind of spend.
 I did not create a second Budget because I was concerned of budget spending going over the 2 budget free limit.
 
-![Image of The Budget Alarm I Created](assets/budget-alarm.png) 
+![Image of The Budget Alarm I Created](assets/week0/budget-alarm.png) 
 
 ### Recreate Logical Architectural Deisgn
 
-![Cruddur Logical Design](assets/logical-architecture-recreation-diagram.png)
+![Cruddur Logical Diagram](assets/week0/cruddur-logical-diagram.png.png)
 
-[Lucid Charts Share Link](https://lucid.app/lucidchart/c6d54586-0334-44ab-95cb-d11772edcace/edit?viewport_loc=-259%2C144%2C2219%2C1161%2C0_0&invitationId=inv_19e0767b-5aa5-49ec-bccd-f220b9163d2f
-)
+[Lucid Charts Cruddur Logical Diagram Link](https://lucid.app/documents/view/594dbcda-c1ab-4623-a120-cb08fe136f8c)
 
-## Example of Referncing a file in the codebase
+
+## Example of Referencing a file in the codebase
 
 Example of me of referencing a file in my repo
-[week-1-again/aws/json/alarm-config.jso](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1-again/aws/json/alarm-config.json)
+[week-1-again/aws/json/alarm-config.json](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1-again/aws/json/alarm-config.json)
 
 
 
