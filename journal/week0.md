@@ -27,7 +27,7 @@ I've followed the instructions on the video [Week 0 - Generate Credentials, AWS 
 
 In order to prove that I am able to use the AWS CLI and the IAM access key is set in Gitpod, here are the screenshot of command `aws sts get-caller-identity` in Gitpod:
 
-![aws sts get-caller-identity](assets/get-caller-identity.png)
+![aws sts get-caller-identity](assets/week0/get-caller-identity.png)
 
 ----------------
 
