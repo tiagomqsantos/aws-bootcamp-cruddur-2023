@@ -1,6 +1,6 @@
 # Week 0 — Billing and Architecture
 
-## Summary
+## Summary submitted in Student Portal
 
 I started off this week by (re)watching and following all the playlist course videos, which provided me with a solid foundation for my learning. I used the root account user to create an IAM group and an IAM user, with admin privileges. Setting up MFA in both users was an important security measure that I implemented, and I've also created access keys to use that user in gitpod.
 
@@ -13,6 +13,64 @@ Drawing the required diagrams in Lucid Charts was a challenging task, but is a g
 Researching the technical and service limits of specific services is an important step in ensuring that my system is technically flexible, and opening a support ticket to request a service limit shows that I am willing to take proactive measures to ensure my system is scalable.
 
 Overall, I have accomplished a great deal during this first week of the bootcamp. I will continue to keep up the good work!
+
+--------
+
+
+## Required Homework/Tasks
+
+### Install and Verify AWS CLI in Gitpod
+
+I've been using Gitpod in bootcamp, as previously recommended by Andrew.
+
+I've followed the instructions on the video [Week 0 - Generate Credentials, AWS CLI, Budget and Billing Alarm via CLI]( https://www.youtube.com/watch?v=OdUnNuKylHg&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=16).
+
+In order to prove that I am able to use the AWS CLI and the IAM access key is set in Gitpod, here are the screenshot of command `aws sts get-caller-identity` in Gitpod:
+
+![aws sts get-caller-identity](assets/get-caller-identity.png)
+
+----------------
+
+I followed the instructions on the [AWS CLI Install Documentation Page](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+![Installing AWS CLI](assets/installing-windows-aws-cli.png)
+
+```
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+```
+
+I attempted to run the command by typing in `aws` but I recieved an error
+
+```
+C:\Users\Andrew>aws
+'aws' is not recognized as an internal or external command,
+operable program or batch file.
+```
+
+I was able to resolve the error by closing command prompt, and opening it again.
+
+![Proof of Working AWS CLI](assets/proof-of-aws-cli.png)
+
+### Create a Budget
+
+I created my own Budget for $1 because I cannot afford any kind of spend.
+I did not create a second Budget because I was concerned of budget spending going over the 2 budget free limit.
+
+![Image of The Budget Alarm I Created](assets/budget-alarm.png) 
+
+### Recreate Logical Architectural Deisgn
+
+![Cruddur Logical Design](assets/logical-architecture-recreation-diagram.png)
+
+[Lucid Charts Share Link](https://lucid.app/lucidchart/c6d54586-0334-44ab-95cb-d11772edcace/edit?viewport_loc=-259%2C144%2C2219%2C1161%2C0_0&invitationId=inv_19e0767b-5aa5-49ec-bccd-f220b9163d2f
+)
+
+## Example of Referncing a file in the codebase
+
+Example of me of referencing a file in my repo
+[week-1-again/aws/json/alarm-config.jso](https://github.com/omenking/aws-bootcamp-cruddur-2023/blob/week-1-again/aws/json/alarm-config.json)
+
+
 
 --------
 
