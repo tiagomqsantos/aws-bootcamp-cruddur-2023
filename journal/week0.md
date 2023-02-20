@@ -166,7 +166,7 @@ With that, I have MFA set on both root user and in the user that I use in gitpod
 
 ### Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
 
-I used the info on https://asecure.cloud/a/detect-aws-health-events/ as reference.
+I used the info on [Detect and Notify on AWS Personal Health Dashboard Events](https://asecure.cloud/a/detect-aws-health-events/) as reference.
 
 First I will create an SNS Topic (This is similar to the one that I did above for billing alert):
 
@@ -211,10 +211,33 @@ To confirm this, here are the screenshots of commands in terminal and the result
 
 ### Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
 
+Info: [AWS Well-Architected Tool FAQs](https://aws.amazon.com/well-architected-tool/faqs/)
 Done
 
 ### Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
 
 ### Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility. 
 
+Info: [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+
+I watched the info in the AWS Console and played some commands in the terminal.
+
+![service-quotas-1](assets/week0/service-quotas-1.png)
+
+![service-quotas-2](assets/week0/service-quotas-2.png)
+
 ### Open a support ticket and request a service limit
+
+In AWS Console I requested a new limit for `The number of Amazon S3 buckets that you can create in an account (L-DC2B2D3D)` (L-FAABEEBA), from 100 to 101.
+
+![service-quotas-3](assets/week0/service-quotas-3.png)
+
+![service-quotas-4](assets/week0/service-quotas-4.png)
+
+I used the info found on [request-service-quota-increase¶](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/request-service-quota-increase.html) to request new quotas on S3 buckets via AWS CLI.
+
+With the terminal I requested a new limit for quota `The number of Amazon S3 Access Points that you can create per region in an account (L-FAABEEBA)`, from 10000 to 10001.
+
+![service-quotas-5](assets/week0/service-quotas-5.png)
+
+![service-quotas-6](assets/week0/service-quotas-6.png)
