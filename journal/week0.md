@@ -19,9 +19,11 @@ Overall, I have accomplished a great deal during this first week of the bootcamp
 
 ## Required Homework/Tasks
 
-### Set MFA in AWS Root account user 
-
 ### Create a new IAM user (and a group) and set MFA on it
+
+- I signed up with root user in my AWS account, created an IAM group called and attached a determined policy to it. 
+- I create a user and assigned it to the previously created group.
+- I activate MFA on it and created an Access Key to use on Gitpod.
 
 ### Install and Verify AWS CLI in Gitpod
 
@@ -144,9 +146,7 @@ Last, I checked my email and confirmed the subscription.
 aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.json
 ```
 
-### Create an Alarm
-
-![Image of The Budget Alarm I Created](assets/week0/budget-alarm.png) 
+![Image of The Budget Alarm I Created](assets/week0/billing-alarm.png) 
 
 ### Recreate Logical Architectural Deisgn
 
@@ -154,3 +154,67 @@ aws cloudwatch put-metric-alarm --cli-input-json file://aws/json/alarm_config.js
 
 [Lucid Charts Cruddur Logical Diagram Link](https://lucid.app/documents/view/594dbcda-c1ab-4623-a120-cb08fe136f8c)
 
+## Homework Challenges
+
+### Destroy your root account credentials, Set MFA, IAM role
+
+As mentioned above, I already create another user with admin permissions. 
+Before that I already had set MFA on root user too as a security best practice.
+With that, I have MFA set on both root user and in the user that I use in gitpod.
+
+![MFA set on root user and the created IAM user](assets/week0/IAM-MFA.png)
+
+### Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue.
+
+I used the info on https://asecure.cloud/a/detect-aws-health-events/ as reference.
+
+First I will create an SNS Topic (This is similar to the one that I did above for billing alert):
+
+```sh
+aws sns create-topic --name health-alarm
+```
+which returned the ARN of the SNS topic.
+
+After that, I created a subscription supply of the refered sns topic and my email:
+
+```sh
+    aws sns subscribe \
+    --topic-arn="arn:aws:sns:ca-central-1:459837654098:health-alarm" \
+    --protocol=email \
+    --notification-endpoint tiagosantos.server+health@gmail.com
+```
+
+Then I created the Event Bridge rule for AWS Health:
+
+```sh
+aws events put-rule --name "detect-aws-health-events" --state "ENABLED"  --event-pattern '{
+    "detail-type": [
+        "AWS Health Event"
+    ],
+    "source": [
+        "aws.health"
+    ]
+}'
+```
+
+Last, I set the SNS Topic as the target of the rule:
+```sh
+aws events put-targets --rule "detect-aws-health-events" \
+ --targets Id="health-alarm",Arn="arn:aws:sns:ca-central-1:459837654098:health-alarm"
+```
+
+To confirm this, here are the screenshots of commands in terminal and the result on AWS Console Regarding the SNS Topic and the Rule on EventBridge:
+
+![eventbridge-sns-health-terminal](assets/week0/eventbridge-sns-health-terminal.png)
+![sns-health](assets/week0/sns-health.png)
+![eventbridge-health](assets/week0/eventbridge-health.png)
+
+### Review all the questions of each pillars in the Well Architected Tool (No specialized lens)
+
+Done
+
+### Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
+
+### Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility. 
+
+### Open a support ticket and request a service limit
