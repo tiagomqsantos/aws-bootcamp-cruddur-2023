@@ -214,8 +214,6 @@ To confirm this, here are the screenshots of commands in terminal and the result
 Info: [AWS Well-Architected Tool FAQs](https://aws.amazon.com/well-architected-tool/faqs/)
 Done
 
-### Create an architectural diagram (to the best of your ability) the CI/CD logical pipeline in Lucid Charts
-
 ### Research the technical and service limits of specific services and how they could impact the technical path for technical flexibility. 
 
 Info: [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
@@ -237,6 +235,12 @@ In AWS Console I requested a new limit for `The number of Amazon S3 buckets that
 I used the info found on [request-service-quota-increase¶](https://docs.aws.amazon.com/cli/latest/reference/service-quotas/request-service-quota-increase.html) to request new quotas on S3 buckets via AWS CLI.
 
 With the terminal I requested a new limit for quota `The number of Amazon S3 Access Points that you can create per region in an account (L-FAABEEBA)`, from 10000 to 10001.
+```sh
+aws service-quotas request-service-quota-increase \
+    --service-code s3 \
+    --quota-code L-FAABEEBA\
+    --desired-value 10001
+```
 
 ![service-quotas-5](assets/week0/service-quotas-5.png)
 
