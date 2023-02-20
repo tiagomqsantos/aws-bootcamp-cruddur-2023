@@ -1,4 +1,4 @@
-# Week 0 — Billing and Architecture (journal under construction)
+# Week 0 — Billing and Architecture
 
 ## Summary submitted in Student Portal
 
